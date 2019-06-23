@@ -11,50 +11,58 @@ var axios = require("axios")
 
 // concert-this: "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 
-artist = process.argv[2]
-queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+// artist = process.argv[2]
+// queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 
-axios.get(queryURL).then(
-    function(response) {
-        events = response.data
-        for(var i = 0; i < events.length; i++) {
-            console.log(" ---------- " +
-                        "\n" + events[i].venue.name +
-                        "\n" + events[i].venue.city +
-                        "\n" + events[i].datetime)
-        }
-}).catch(function(error) {
-    if (error.response) {
-     console.log(error)
-    }
-    else if (error.request) {
-    // request was made but no response
-    console.log(error.request)
-    }
-    else {
-    // for anything else that may have caused an error.
-    console.log("Error", error.message)
-    }
-})
+// axios.get(queryURL).then(
+//     function(response) {
+//         events = response.data
+//         for(var i = 0; i < events.length; i++) {
+//             console.log(" ---------- " +
+//                         "\n" + events[i].venue.name +
+//                         "\n" + events[i].venue.city +
+//                         "\n" + events[i].datetime)
+//         }
+// }).catch(function(error) {
+//     if (error.response) {
+//      console.log(error)
+//     }
+//     else if (error.request) {
+//     // request was made but no response
+//     console.log(error.request)
+//     }
+//     else {
+//     // for anything else that may have caused an error.
+//     console.log("Error", error.message)
+//     }
+// })
 
 // spofity-this-song
 
 var Spotify = require('node-spotify-api')
+var song = process.argv.slice(2).join(" ")
+
+var trackURL = "https://api.spotify.com/v1/search?q=" + song + "&type=track&limit=3"
+
 
 var spotify = new Spotify(keys.spotify);
 
-spotify.search({type: "track", query: "Best Friends"}).then(function(response){
-    console.log(response);
+
+spotify.request(trackURL)
+.then(function(data) {
+        console.log(data.tracks.items[0].artists[0].name)
+        trackInfo = data.tracks.items
+        for(var i = 0; i < trackInfo.length; i++) {
+            console.log(" ------------- " +
+            "\n" + data.tracks.items[i].artists[0].name +
+            "\n" + data.tracks.items[i].name +
+            "\n" + data.tracks.items[i].external_urls.spotify+
+            "\n" + data.tracks.items[i].album.name)
+        }
 })
 .catch(function(err){
-    console.log(err)
+    console.error('Error occured: ' + err)
 })
-
-
-
-
-// key = 8a89666fd78449fb9f60c22d6eed8650
-
 
 // movie-this
 
