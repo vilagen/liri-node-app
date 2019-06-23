@@ -54,10 +54,10 @@ spotify.request(trackURL)
         trackInfo = data.tracks.items
         for(var i = 0; i < trackInfo.length; i++) {
             console.log(" ------------- " +
-            "\n" + data.tracks.items[i].artists[0].name +
-            "\n" + data.tracks.items[i].name +
-            "\n" + data.tracks.items[i].external_urls.spotify+
-            "\n" + data.tracks.items[i].album.name)
+            "\n Artist: " + data.tracks.items[i].artists[0].name +
+            "\n Track: " + data.tracks.items[i].name +
+            "\n Spotify Link: " + data.tracks.items[i].external_urls.spotify +
+            "\n Album: " + data.tracks.items[i].album.name)
         }
 })
 .catch(function(err){
