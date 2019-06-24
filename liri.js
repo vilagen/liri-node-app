@@ -4,6 +4,9 @@ require("dotenv").config();
 var keys = require("./keys.js")
 var axios = require("axios")
 
+
+
+
 // use a switch set to process arg 2 for what if statements for each command. 
 // then make arg 3 follow what the user inputs.
 
@@ -66,62 +69,59 @@ var axios = require("axios")
 
 // movie-this
 
-var omdb = require("omdb");
+// var omdb = require("omdb");
 
-movie = process.argv.slice(2).join(" ")
+// movie = process.argv.slice(2).join(" ")
 
-var movieSearch = "https://www.omdbapi.com/?t=" + movie + "&apikey=5074847d"
+// var movieSearch = "https://www.omdbapi.com/?t=" + movie + "&apikey=5074847d"
 
-axios.get(movieSearch).then(
-    function(response){
-        if(!response.data.Ratings) {
-            console.log(" ----------- " +
-            "\n Title: " + response.data.Title +
-            "\n Year of Release: " + response.data.Year +
-            "\n IMDB Rating: " + response.data.imdbRating +
-            "\n No Rotten Tomatoes Score" +
-            "\n Country: " + response.data.Country +
-            "\n Langauge: " + response.data.Language +
-            "\n Plot: " + response.data.Plot +
-            "\n Actors: " + response.data.Actors)
-        }
+// axios.get(movieSearch).then(
+//     function(response){
+//         if(!response.data.Ratings) {
+//             console.log(" ----------- " +
+//             "\n Title: " + response.data.Title +
+//             "\n Year of Release: " + response.data.Year +
+//             "\n IMDB Rating: " + response.data.imdbRating +
+//             "\n No Rotten Tomatoes Score" +
+//             "\n Country: " + response.data.Country +
+//             "\n Langauge: " + response.data.Language +
+//             "\n Plot: " + response.data.Plot +
+//             "\n Actors: " + response.data.Actors)
+//         }
 
-        else{
-            console.log(" ----------- " +
-            "\n Title: " + response.data.Title +
-            "\n Year of Release: " + response.data.Year +
-            "\n IMDB Rating: " + response.data.imdbRating +
-            "\n " + response.data.Ratings[1].Source + ": " + response.data.Ratings[1].Value +
-            "\n Country: " + response.data.Country +
-            "\n Langauge: " + response.data.Language +
-            "\n Plot: " + response.data.Plot +
-            "\n Actors: " + response.data.Actors)
-        }
-})
-    .catch(function(error) {
-        if (error.response) {
-        console.log(error)
-        }
-        else if (error.request) {
-        // request was made but no response
-        console.log(error.request)
-        }
-        else {
-        // for anything else that may have caused an error.
-        console.log("Error", error.message)
-        }
-})
-
-// * Title of the movie.
-// * Year the movie came out.
-// * IMDB Rating of the movie.
-// * Rotten Tomatoes Rating of the movie.
-// * Country where the movie was produced.
-// * Language of the movie.
-// * Plot of the movie.
-// * Actors in the movie.
-
+//         else{
+//             console.log(" ----------- " +
+//             "\n Title: " + response.data.Title +
+//             "\n Year of Release: " + response.data.Year +
+//             "\n IMDB Rating: " + response.data.imdbRating +
+//             "\n " + response.data.Ratings[1].Source + ": " + response.data.Ratings[1].Value +
+//             "\n Country: " + response.data.Country +
+//             "\n Langauge: " + response.data.Language +
+//             "\n Plot: " + response.data.Plot +
+//             "\n Actors: " + response.data.Actors)
+//         }
+// })
+//     .catch(function(error) {
+//         if (error.response) {
+//         console.log(error)
+//         }
+//         else if (error.request) {
+//         // request was made but no response
+//         console.log(error.request)
+//         }
+//         else {
+//         // for anything else that may have caused an error.
+//         console.log("Error", error.message)
+//         }
+// })
 
 // do-what-it-says
 
-var fs = require('fs')
+// var fs = require('fs')
+
+// fs.readFile("random.txt", "utf8", function(err, data){
+//     if(err) {
+//         return console.log(err)
+//     }
+//     console.log(data)
+// })
