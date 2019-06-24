@@ -73,17 +73,43 @@ movie = process.argv.slice(2).join(" ")
 var movieSearch = "https://www.omdbapi.com/?t=" + movie + "&apikey=5074847d"
 
 axios.get(movieSearch).then(
-    function(reponse){
-    console.log(reponse.data.Ratings[1].Source, reponse.data.Ratings[1].Value) 
-    console.log(" ----------- " +
-                "\n Title: " + reponse.data.Title +
-                "\n Year of Release: " + reponse.data.Year +
-                "\n IMDB Rating: " + reponse.data.imdbRating +
-                "\n" + reponse.data.Ratings[0] +
-                "\n" + reponse.data.Country +
-                "\n" + reponse.data.Language +
-                "\n" + reponse.data.Plot +
-                "\n" + reponse.data.Actors)
+    function(response){
+        if(!response.data.Ratings) {
+            console.log(" ----------- " +
+            "\n Title: " + response.data.Title +
+            "\n Year of Release: " + response.data.Year +
+            "\n IMDB Rating: " + response.data.imdbRating +
+            "\n No Rotten Tomatoes Score" +
+            "\n Country: " + response.data.Country +
+            "\n Langauge: " + response.data.Language +
+            "\n Plot: " + response.data.Plot +
+            "\n Actors: " + response.data.Actors)
+        }
+
+        else{
+            console.log(" ----------- " +
+            "\n Title: " + response.data.Title +
+            "\n Year of Release: " + response.data.Year +
+            "\n IMDB Rating: " + response.data.imdbRating +
+            "\n " + response.data.Ratings[1].Source + ": " + response.data.Ratings[1].Value +
+            "\n Country: " + response.data.Country +
+            "\n Langauge: " + response.data.Language +
+            "\n Plot: " + response.data.Plot +
+            "\n Actors: " + response.data.Actors)
+        }
+})
+    .catch(function(error) {
+        if (error.response) {
+        console.log(error)
+        }
+        else if (error.request) {
+        // request was made but no response
+        console.log(error.request)
+        }
+        else {
+        // for anything else that may have caused an error.
+        console.log("Error", error.message)
+        }
 })
 
 // * Title of the movie.
