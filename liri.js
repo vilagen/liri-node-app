@@ -27,13 +27,13 @@ case "do-what-it-says":
     break;
 }
 
-// use a switch set to process arg 2 for what if statements for each command. 
-// then make arg 3 follow what the user inputs.
+// concert-this
 
 function concert(){
 
 if(input ===""){
-    input = 'Mr. Brightside'
+    input = 'Pink'
+    console.log("No band chosen: Pink chosen by default")
 }
 
 queryURL = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
@@ -66,7 +66,13 @@ axios.get(queryURL).then(
 
 function spotify() {
 var Spotify = require('node-spotify-api')
-// var song = process.argv.slice(3).join(" ")
+
+// if input is blank:
+
+if(input === ""){
+    input = "Mr. Brightside"
+    console.log("No song input: Default to Mr. Brightside")
+}
 
 var trackURL = "https://api.spotify.com/v1/search?q=" + input + "&type=track&limit=3"
 
@@ -93,6 +99,11 @@ spotify.request(trackURL)
 
 function omdb() {
 // movie = process.argv.slice(3).join(" ")
+
+if(input === ""){
+    (input = "Pan's Labyrinth")
+    console.log("No movie chosen. Pan's Labyrinth chosen by default")
+}
 
 var movieSearch = "https://www.omdbapi.com/?t=" + input + "&apikey=5074847d"
 
