@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-
+var moment = require("moment")
 var keys = require("./keys.js")
 var axios = require("axios")
 var fs = require('fs')
@@ -41,7 +41,7 @@ axios.get(queryURL).then(
             console.log(" ---------- " +
                         "\n Venue: " + events[i].venue.name +
                         "\n Venue City: " + events[i].venue.city +
-                        "\n Datetime: " + events[i].datetime)
+                        "\n Datetime: " + moment(events[i].datetime).format("L"))
         }
 }).catch(function(error) {
     if (error.response) {
