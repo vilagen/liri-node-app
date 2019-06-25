@@ -32,6 +32,10 @@ case "do-what-it-says":
 
 function concert(){
 
+if(input ===""){
+    input = 'Mr. Brightside'
+}
+
 queryURL = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
 
 axios.get(queryURL).then(
@@ -45,15 +49,15 @@ axios.get(queryURL).then(
         }
 }).catch(function(error) {
     if (error.response) {
-     console.log(error)
+     console.log("Error occured: " + error)
     }
     else if (error.request) {
     // request was made but no response
-    console.log(error.request)
+    console.log("Error occured: " + error.request)
     }
     else {
     // for anything else that may have caused an error.
-    console.log("Error", error.message)
+    console.log("Error occured: ", error.message)
     }
 })
 }
@@ -66,9 +70,7 @@ var Spotify = require('node-spotify-api')
 
 var trackURL = "https://api.spotify.com/v1/search?q=" + input + "&type=track&limit=3"
 
-
 var spotify = new Spotify(keys.spotify);
-
 
 spotify.request(trackURL)
 .then(function(data) {
