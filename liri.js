@@ -3,6 +3,8 @@ require("dotenv").config();
 
 var keys = require("./keys.js")
 var axios = require("axios")
+var fs = require('fs')
+var input = process.argv.slice(3).join(" ")
 
 var command = process.argv[2]
 
@@ -29,8 +31,8 @@ case "do-what-it-says":
 // then make arg 3 follow what the user inputs.
 
 function concert(){
-artist = process.argv.slice(3).join(" ")
-queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+
+queryURL = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
 
 axios.get(queryURL).then(
     function(response) {
@@ -60,9 +62,9 @@ axios.get(queryURL).then(
 
 function spotify() {
 var Spotify = require('node-spotify-api')
-var song = process.argv.slice(3).join(" ")
+// var song = process.argv.slice(3).join(" ")
 
-var trackURL = "https://api.spotify.com/v1/search?q=" + song + "&type=track&limit=3"
+var trackURL = "https://api.spotify.com/v1/search?q=" + input + "&type=track&limit=3"
 
 
 var spotify = new Spotify(keys.spotify);
@@ -87,28 +89,13 @@ spotify.request(trackURL)
 
 // movie-this
 
-var omdb = require("omdb");
-
 function omdb() {
-movie = process.argv.slice(3).join(" ")
+// movie = process.argv.slice(3).join(" ")
 
-var movieSearch = "https://www.omdbapi.com/?t=" + movie + "&apikey=5074847d"
+var movieSearch = "https://www.omdbapi.com/?t=" + input + "&apikey=5074847d"
 
 axios.get(movieSearch).then(
     function(response){
-        // if(!response.data.Ratings) {
-        //     console.log(" ----------- " +
-        //     "\n Title: " + response.data.Title +
-        //     "\n Year of Release: " + response.data.Year +
-        //     "\n IMDB Rating: " + response.data.imdbRating +
-        //     "\n No Rotten Tomatoes Score" +
-        //     "\n Country: " + response.data.Country +
-        //     "\n Langauge: " + response.data.Language +
-        //     "\n Plot: " + response.data.Plot +
-        //     "\n Actors: " + response.data.Actors)
-        // }
-
-        // else{
             console.log(" ----------- " +
             "\n Title: " + response.data.Title +
             "\n Year of Release: " + response.data.Year +
@@ -118,7 +105,6 @@ axios.get(movieSearch).then(
             "\n Langauge: " + response.data.Language +
             "\n Plot: " + response.data.Plot +
             "\n Actors: " + response.data.Actors)
-        // }
 })
     .catch(function(error) {
         if (error.response) {
@@ -137,11 +123,29 @@ axios.get(movieSearch).then(
 
 // do-what-it-says
 
-// var fs = require('fs')
+function random(){
 
-// fs.readFile("random.txt", "utf8", function(err, data){
-//     if(err) {
-//         return console.log(err)
-//     }
-//     console.log(data)
-// })
+fs.readFile("random.txt", "utf8", function(err, data){
+    if(err) {
+        return console.log(err)
+    }
+
+    var dwis = data.split(",")
+    input = dwis[1]
+
+    switch(dwis[0]) {
+
+    case "concert-this":
+        concert();
+        break
+
+    case "spotify-this-song":
+        spotify();
+        break
+
+    case "movie-this":
+        omdb();
+        break
+    }
+})
+}
