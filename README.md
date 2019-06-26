@@ -73,7 +73,25 @@ node liri.js do-what-it-says
 There is not anything else to input. This will look at text in a
 file called "random.txt" and return the command, and media input,
 that the text has. By default, it is set to "movie-this,Star Wars:
-Episode IV"
+Episode IV."
 
-Here are some examples of results of the app in use:
+Below are examples of each 
 
+concert-this:
+
+https://github.com/vilagen/liri-node-app/blob/master/liri_pics/concert-this.PNG
+
+
+do-what-it-says:
+
+https://github.com/vilagen/liri-node-app/blob/master/liri_pics/do-what-it-says.PNG
+
+
+movie-this:
+
+https://github.com/vilagen/liri-node-app/blob/master/liri_pics/movie-this.PNG
+
+
+spotify-this-song: 
+
+https://github.com/vilagen/liri-node-app/blob/master/liri_pics/spotify-this-song.PNG
