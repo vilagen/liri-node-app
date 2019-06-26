@@ -100,11 +100,6 @@ spotify.request(trackURL)
 function omdb() {
 // movie = process.argv.slice(3).join(" ")
 
-if(input === ""){
-    (input = "Pan's Labyrinth")
-    console.log("No movie chosen. Pan's Labyrinth chosen by default")
-}
-
 var movieSearch = "https://www.omdbapi.com/?t=" + input + "&apikey=5074847d"
 
 axios.get(movieSearch).then(
