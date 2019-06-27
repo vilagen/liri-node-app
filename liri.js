@@ -3,8 +3,10 @@ require("dotenv").config();
 var moment = require("moment")
 var keys = require("./keys.js")
 var axios = require("axios")
+var Spotify = require('node-spotify-api')
 var fs = require('fs')
 var input = process.argv.slice(3).join(" ")
+
 
 var command = process.argv[2]
 
@@ -65,7 +67,6 @@ axios.get(queryURL).then(
 // spofity-this-song
 
 function spotify() {
-var Spotify = require('node-spotify-api')
 
 // if input is blank:
 
